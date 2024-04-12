@@ -3,13 +3,13 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('root');
 });
 
 Route::get('/bio', function () {
     return view('bio');
 });
 
-Route::get('/posts', function () {
-    return ['posts' => ['an Alter Native.', 'an Alter Native.']];
+Route::get('/tags', function () {
+    return view('tags');
 });

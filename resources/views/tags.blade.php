@@ -1,3 +1,3 @@
 <x-layout>
-    <h2>biography</h2>
+    <h2>tagging</h2>
 </x-layout>
