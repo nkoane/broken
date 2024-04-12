@@ -4,26 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROOT</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <title>BROK/N</title>
+    @vite('resources/css/app.css')
 </head>
 
-<body>
-    <header>
-        <h1>BROKE/N</h1>
-        <nav>
-            <ul>
-                <li><a href="/">root</a></li>
-                <li><a href="/bio">biography</a></li>
-                <li><a href="/tags">tags</a></li>
-            </ul>
+<body class="bg-gray-50 flex flex-col h-screen">
+    <header class="flex justify-between items-center p-4">
+        <h1 class="text-3xl font-bold transition-all duration-500 hover:text-yellow-600"><a href="/">BROK+N</a></h1>
+        <nav class="flex gap-2">
+            <x-nav.link href="/bio" label="biography" />
+            <x-nav.link href="/tags" label="tags" />
         </nav>
     </header>
-    <main>
+    <main class="flex-grow bg-yellow-50 p-4">
         {{ $slot }}
     </main>
-    <footer>
-        <p>ETSPx &copy; 2024</p>
+    <footer class="bg-gray-100 text-xs text-left px-2 py-1">
+        <p>ETSPx &copy; {{ date('Y') }}</p>
     </footer>
 </body>
 
