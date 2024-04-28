@@ -10,6 +10,6 @@ Route::get('/bio', function () {
     return view('bio');
 });
 
-Route::get('/tags', function () {
-    return view('tags');
+Route::get('/work', function () {
+    return view('work');
 });
