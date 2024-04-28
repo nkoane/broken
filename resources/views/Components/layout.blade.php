@@ -9,7 +9,7 @@
 
     <body class="flex h-screen flex-col bg-gray-50">
         <x-header heading="{{ $heading }}" />
-        <main class="flex-grow bg-yellow-50 p-4 sm:bg-green-600 md:bg-red-600 xl:bg-blue-600">
+        <main class="flex-grow bg-yellow-50 p-4">
             {{ $slot }}
         </main>
         <x-footer holder="ETSPx" year="{{ date ('Y') }}"></x-footer>
