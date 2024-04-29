@@ -13,9 +13,7 @@
         <x-nav.link href="/work">work</x-nav.link>
         <div class="flex">
             <a href="/for-your-eyes-only">
-                <img
-                    class="block h-[40px] w-[40px] hover:cursor-pointer"
-                    src="https://source.boringavatars.com/bauhaus/40/broken-hearts-but-not-ideas" />
+                <img class="block h-[40px] w-[40px] hover:cursor-pointer" src="https://source.boringavatars.com/bauhaus/40/broken-hearts-but-not-ideas" />
             </a>
             <ul class="ml-4 hidden items-center text-sm xl:flex">
                 <li class="border-l-2 border-red-600 px-4">tommy spinelli</li>
