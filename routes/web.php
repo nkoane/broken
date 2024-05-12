@@ -20,8 +20,9 @@ Route::get('/jobs', function () {
 Route::get('/jobs/{id}', function ($id) {
 
     $job = Job::find($id);
+
     if ($job === null) {
-        abort(404);
+        abort(404, 'WTF, You is looking for ain\'t here.');
     }
 
     return view('jobs.view', ['job' => $job]);
