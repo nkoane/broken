@@ -9,9 +9,9 @@
     <a class="transition-color text-6xl duration-500 group-hover:text-orange-600">/</a>
     <h2 class="text-md">{{ $heading }}</h2>
     <nav class="al ml-auto flex items-center gap-2">
-        <x-nav.link href="/root" class="{{ request()->routeIs('root') ? 'active' : '' }}">root</x-nav.link>
-        <x-nav.link href="/bio" class="{{ request()->is('bio') ? 'active' : '' }}">bio</x-nav.link>
-        <x-nav.link href="/work" class="{{ request()->routeIs('work*') ? 'active' : '' }}">work</x-nav.link>
+        <x-nav.link href="/" active="{{ request()->routeIs('root') }}">root</x-nav.link>
+        <x-nav.link href="/bio" active="{{ request()->is('bio') }}">bio</x-nav.link>
+        <x-nav.link href="/work" active="{{ request()->routeIs('work*') }}">work</x-nav.link>
         <div class="flex">
             <a href="/for-your-eyes-only">
                 <img
