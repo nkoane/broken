@@ -1,27 +1,35 @@
-<header class="group flex items-center gap-2 border-b-2 border-gray-100 bg-gradient-to-b from-gray-50 to-yellow-50 p-4">
-    <h1 class="">
-        <a href="/" class="group flex items-center">
-            <span>BROK</span>
-            <span>+</span>
-            <span>N</span>
-        </a>
-    </h1>
-    <a class="transition-color text-6xl duration-500 group-hover:text-orange-600">/</a>
-    <h2 class="text-md">{{ $heading }}</h2>
-    <nav class="al ml-auto flex items-center gap-2">
-        <x-nav.link href="/" active="{{ request()->routeIs('root') }}">root</x-nav.link>
-        <x-nav.link href="/bio" active="{{ request()->is('bio') }}">bio</x-nav.link>
-        <x-nav.link href="/work" active="{{ request()->routeIs('work*') }}">work</x-nav.link>
-        <div class="flex">
+<header class="group flex items-center gap-2 border-b-2 border-gray-100 bg-gradient-to-b from-gray-50 to-yellow-50 p-4 pr-0">
+    <div class="flex items-center">
+        <h1 class="">
+            <a href="/" class="group flex items-center font-bold">
+                <span>BROK</span>
+                <span>+</span>
+                <span>N</span>
+            </a>
+        </h1>
+        <a class="transition-color -mt-3 ml-2 mr-2 text-6xl duration-500 group-hover:text-orange-600">/</a>
+        <h2 class="text-md font-light">{{ $heading }}</h2>
+    </div>
+    <nav class="al ml-auto flex items-center gap-2" role="navigation">
+        <x-nav.link href="/" :active="request()->routeIs('root')">root</x-nav.link>
+        <x-nav.link href="/bio" :active="request()->is('bio')">bio</x-nav.link>
+        <x-nav.link href="/work" :active="request()->routeIs('work*')">work</x-nav.link>
+    </nav>
+
+    <ul class="flex items-center bg-white p-2 text-sm">
+        <li class="mr-2 border-l-2 border-r-2 border-black border-l-black px-2">
+            <x-nav.link href="/dash">dashboard</x-nav.link>
+        </li>
+        <li>
             <a href="/for-your-eyes-only">
                 <img
                     class="block h-[40px] w-[40px] hover:cursor-pointer"
-                    src="https://source.boringavatars.com/bauhaus/40/broken-hearts-but-not-ideas" />
+                    src="https://source.boringavatars.com/bauhaus/40/broken-hearts-but-not-ideas"
+                    alt="tommy spinelli" />
             </a>
-            <ul class="ml-4 hidden items-center text-sm xl:flex">
-                <li class="border-l-2 border-red-600 px-4">tommy spinelli</li>
-                <li class="border-l-2 border-red-600 pl-4">exit</li>
-            </ul>
-        </div>
-    </nav>
+        </li>
+        <li class="ml-2 border-l-2 border-black px-2">
+            <x-nav.link action="/" method="post" type="button" class="text-blue-600">sign out</x-nav.link>
+        </li>
+    </ul>
 </header>
