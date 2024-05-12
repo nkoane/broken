@@ -1,3 +1,3 @@
-<footer class="bg-gray-100 px-2 py-1 text-right text-xs">
+<footer class="border-t-2 bg-orange-50 p-4 text-right text-xs">
     <p>{{ $holder }} &copy; {{ $year }}</p>
 </footer>

@@ -9,11 +9,14 @@
     <a class="transition-color text-6xl duration-500 group-hover:text-orange-600">/</a>
     <h2 class="text-md">{{ $heading }}</h2>
     <nav class="al ml-auto flex items-center gap-2">
-        <x-nav.link href="/bio" class="active">bio</x-nav.link>
-        <x-nav.link href="/work">work</x-nav.link>
+        <x-nav.link href="/root" class="{{ request()->routeIs('root') ? 'active' : '' }}">root</x-nav.link>
+        <x-nav.link href="/bio" class="{{ request()->is('bio') ? 'active' : '' }}">bio</x-nav.link>
+        <x-nav.link href="/work" class="{{ request()->routeIs('work*') ? 'active' : '' }}">work</x-nav.link>
         <div class="flex">
             <a href="/for-your-eyes-only">
-                <img class="block h-[40px] w-[40px] hover:cursor-pointer" src="https://source.boringavatars.com/bauhaus/40/broken-hearts-but-not-ideas" />
+                <img
+                    class="block h-[40px] w-[40px] hover:cursor-pointer"
+                    src="https://source.boringavatars.com/bauhaus/40/broken-hearts-but-not-ideas" />
             </a>
             <ul class="ml-4 hidden items-center text-sm xl:flex">
                 <li class="border-l-2 border-red-600 px-4">tommy spinelli</li>
