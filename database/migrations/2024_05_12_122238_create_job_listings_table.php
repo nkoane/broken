@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->integer('salary');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->nullable();
+            $table->timestamps();
         });
     }
 
