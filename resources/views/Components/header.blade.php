@@ -13,7 +13,7 @@
     <nav class="al ml-auto flex items-center gap-2" role="navigation">
         <x-nav.link href="/" :active="request()->routeIs('root')">root</x-nav.link>
         <x-nav.link href="/bio" :active="request()->is('bio')">bio</x-nav.link>
-        <x-nav.link href="/work" :active="request()->routeIs('work*')">work</x-nav.link>
+        <x-nav.link href="/jobs" :active="request()->routeIs('jobs*')">jobs</x-nav.link>
     </nav>
 
     <ul class="flex items-center bg-white p-2 text-sm">
