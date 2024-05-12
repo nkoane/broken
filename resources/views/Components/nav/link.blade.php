@@ -7,11 +7,11 @@
     <form {{ $attributes }}>
         <button type="submit">{{ $slot }}</button>
     </form>
-@else
+@elseif ($type == 'anchor')
     <a
         {{ $attributes }}
         aria-current="{{ $active ? 'active' : 'false' }}"
-        class="{{ $active ? ' outline outline-black ' : '' }} px-2 py-1 transition-colors duration-75">
+        class="{{ $active ? ' outline outline-black ' : '' }} px-2 py-1">
         {{ $slot }}
     </a>
 @endif

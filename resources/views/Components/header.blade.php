@@ -8,7 +8,7 @@
             </a>
         </h1>
         <a class="transition-color -mt-3 ml-2 mr-2 text-6xl duration-500 group-hover:text-orange-600">/</a>
-        <h2 class="text-md font-light">{{ $heading }}</h2>
+        <h2 class="text-md font-light uppercase">{{ $heading }}</h2>
     </div>
     <nav class="al ml-auto flex items-center gap-2" role="navigation">
         <x-nav.link href="/" :active="request()->routeIs('root')">root</x-nav.link>
@@ -33,3 +33,11 @@
         </li>
     </ul>
 </header>
+
+<style>
+    header nav a:hover {
+        outline-color: red;
+        transition: all 0.75s;
+        color: red;
+    }
+</style>

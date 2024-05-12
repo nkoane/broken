@@ -1,3 +1,3 @@
-<x-layout heading="BIO">
+<x-layout heading="biography">
     <h2>biography</h2>
 </x-layout>
