@@ -12,6 +12,7 @@ Route::get('/bio', function () {
 })->name('bio');
 
 Route::get('/jobs', function () {
+
     return view('jobs.index', [
         'jobs' => Job::all()
     ]);
@@ -26,4 +27,4 @@ Route::get('/jobs/{id}', function ($id) {
     }
 
     return view('jobs.view', ['job' => $job]);
-})->name('jobs.job');
+})->name('jobs.job.show');

@@ -7,12 +7,14 @@
                 <li class="w-1/4 flex-grow bg-gray-50 p-4">
                     <dl class="w-full">
                         <dt class="mb-2 text-xl font-bold">
-                            <a class="text-blue-600 hover:underline" href="jobs/{{ $job['id'] }}">{{ $job['title'] }}</a>
+                            <a class="text-blue-600 hover:underline" href="{{ route('jobs.job.show', $job->id) }}">{{ $job['title'] }}</a>
                         </dt>
-                        <dd>{{ $job['description'] }}</dd>
+                        <dd>
+                            {{ $job->description }}
+                        </dd>
                         <dd>
                             <strong>ZAR</strong>
-                            {{ number_format($job['salary'], 0, '.', ' ') }}
+                            {{ number_format($job->salary, 0, '.', ' ') }}
                         </dd>
                     </dl>
                 </li>
