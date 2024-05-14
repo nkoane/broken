@@ -29,7 +29,11 @@
             </a>
         </li>
         <li class="ml-2 border-l-2 border-black px-2">
-            <x-nav.link action="/" method="post" type="button" class="text-blue-600">sign out</x-nav.link>
+            @if (auth()->check())
+                <x-nav.link action="/" method="post" type="button" class="text-blue-600">sign out</x-nav.link>
+            @else
+                <x-nav.link action="/" method="post" class="text-blue-600">sign in</x-nav.link>
+            @endif
         </li>
     </ul>
 </header>
