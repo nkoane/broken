@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: ["./resources/**/*.blade.php", "./resources/**/*.js"],
+    content: ['./resources/**/*.blade.php', './resources/**/*.js'],
     theme: {
         extend: {},
     },
-    plugins: [],
+    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 };

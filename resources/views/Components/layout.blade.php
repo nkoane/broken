@@ -7,7 +7,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
 
-    <body class="flex h-screen flex-col bg-gray-50">
+    <body class="h-screen flex-col bg-gray-50">
         <x-header heading="{{ $heading }}" />
         <main class="flex-grow bg-white p-4">
             {{ $slot }}
