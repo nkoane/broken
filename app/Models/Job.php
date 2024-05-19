@@ -13,13 +13,17 @@ class Job extends Model
 
     protected $table = 'job_listings';
 
-    protected $fillable = ['title', 'description', 'salary'];
+    protected $fillable = ['title', 'description', 'salary', 'employer_id'];
 
-    public function employer(): BelongsTo {
+    /* protected $guarded = []; this is will depend, but i prefer going through the time */
+
+    public function employer(): BelongsTo
+    {
         return $this->belongsTo(Employer::class);
     }
 
-    public function tags (): BelongsToMany {
-        return $this->belongsToMany(Tag::class, foreignPivotKey: 'job_listing_id' );
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class, foreignPivotKey: 'job_listing_id');
     }
 }

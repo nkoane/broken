@@ -12,7 +12,7 @@ Route::get('/bio', function () {
 })->name('bio');
 
 Route::get('/jobs', function () {
-    $jobs = Job::with(['employer', 'tags'])->simplePaginate(5);
+    $jobs = Job::with(['employer', 'tags'])->latest()->simplePaginate(5);
     return view('jobs.index', [
         'jobs' => $jobs
     ]);
@@ -27,7 +27,16 @@ Route::get('/jobs/create', function () {
 
 
 Route::post('/jobs', function () {
-    return 'Thank you for your application!';
+
+    $job = Job::create([
+        'title' => request('title'),
+        'description' => request('description'),
+        'salary' => request('salary'),
+        'employer_id' => request('employer_id'),
+    ]);
+    return redirect(
+        route('jobs.show', $job->id)
+    );
 })->name('jobs.store');
 
 Route::get('/jobs/{id}', function ($id) {
