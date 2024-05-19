@@ -1,5 +1,10 @@
 <x-layout heading="jobs">
-    <h2 class="text-4xl font-bold">Jobs</h2>
+    <div class="mb-4 flex items-center justify-between">
+        <h2 class="text-4xl font-bold">Jobs</h2>
+        <div class="">
+            {{ $jobs->links() }}
+        </div>
+    </div>
 
     @if (! empty($jobs))
         <ol class="flex flex-wrap gap-2">
@@ -26,8 +31,4 @@
             @endforeach
         </ol>
     @endif
-
-    <div class="bg-red-200">
-        {{ $jobs->links() }}
-    </div>
 </x-layout>
