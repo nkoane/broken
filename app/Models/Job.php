@@ -13,7 +13,7 @@ class Job extends Model
 
     protected $table = 'job_listings';
 
-    protected $fillable = ['title', 'description', 'salary', 'employer_id'];
+    protected $fillable = ['title', 'description', 'salary', 'employer_id', 'description'];
 
     /* protected $guarded = []; this is will depend, but i prefer going through the time */
 
