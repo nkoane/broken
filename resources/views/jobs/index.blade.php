@@ -17,11 +17,26 @@
                             </a>
                         </dt>
                         <dd class="text-md my-1 border-b border-t border-gray-400 pb-1 font-bold">
-                            <a class="hover:underline" href="/jobs&employer={{ $job->employer->id }}">{{ $job->employer->name }}</a>
+                            <a class="text-blue-500 hover:underline" href="/jobs&employer={{ $job->employer->id }}">
+                                {{ $job->employer->name }}
+                            </a>
                         </dd>
                         <dd class="g-yellow-100 flex-grow pb-1">
                             {{ $job->description }}
                         </dd>
+                        @if ($job->tags)
+                            <dd class="italic">
+                                @foreach ($job->tags as $tag)
+                                    <a href="/jobs/tag/{{ $tag->name }}" class="mx-1 text-blue-400 hover:underline">
+                                        {{ $tag->name }}
+                                    </a>
+                                    @if (! $loop->last)
+                                        ,
+                                    @endif
+                                @endforeach
+                            </dd>
+                        @endif
+
                         <dd class="flex justify-between border-t border-gray-400 pt-2">
                             <span>ZAR</span>
                             <strong>{{ number_format($job->salary, 0, '.', ' ') }}</strong>

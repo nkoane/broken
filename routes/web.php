@@ -13,7 +13,7 @@ Route::get('/bio', function () {
 
 Route::get('/jobs', function () {
 
-    $jobs = Job::with('employer')->simplePaginate(5);
+    $jobs = Job::with(['employer', 'tags'])->simplePaginate(5);
 
     return view('jobs.index', [
         'jobs' => $jobs
