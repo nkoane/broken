@@ -2,7 +2,13 @@
     'employers' => false,
     'action' => 'anchor',
 ])
-<form class="m-4 rounded" action="{{ $action }}" method="post">
+<form class="m-4 p-8" action="{{ $action }}" method="post">
+    @csrf
+    <div class="mb-4 border-b border-sky-200 pb-4">
+        <h3 class="text-base font-semibold leading-7 text-gray-900">job, specification.</h3>
+        <p class="mt-1 text-sm leading-6 text-gray-600">we, just need a short tweet (x-ed) size definition of the job.</p>
+    </div>
+
     <div class="gap-4 md:flex">
         <div class="w-full sm:col-span-3">
             <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Job Title</label>
@@ -13,6 +19,7 @@
                     id="first-name"
                     autocomplete="given-name"
                     placeholder="Software Engineer"
+                    required
                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
             </div>
         </div>
@@ -22,6 +29,7 @@
                 <select
                     id="employer"
                     name="employer_id"
+                    required
                     autocomplete="employer-name"
                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     @foreach ($employers as $employer)
@@ -40,6 +48,7 @@
                         type="number"
                         name="salary"
                         id="salary"
+                        required
                         autocomplete="salary"
                         class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                         placeholder="10 000 000" />
