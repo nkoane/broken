@@ -4,5 +4,5 @@
         <span>/</span>
         <h2 class="text-3xl">Create</h2>
     </div>
-    <x-forms.job />
+    <x-forms.job action="{{ route('jobs.store') }}" :employers="$employers" />
 </x-layout>

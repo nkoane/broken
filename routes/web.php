@@ -20,8 +20,15 @@ Route::get('/jobs', function () {
 
 
 Route::get('/jobs/create', function () {
-    return view('jobs.create');
+    return view('jobs.create',  [
+        'employers' => Employer::all()->sortByDesc('name')
+    ]);
 })->name('jobs.create');
+
+
+Route::post('/jobs', function () {
+    return 'Thank you for your application!';
+})->name('jobs.store');
 
 Route::get('/jobs/{id}', function ($id) {
     $job = Job::find($id);

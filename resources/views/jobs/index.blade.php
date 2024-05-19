@@ -1,11 +1,13 @@
 <x-layout heading="jobs">
     <div class="mb-4 flex items-center justify-between">
         <div class="flex items-center gap-2">
-            <h2 class="text-4xl font-bold">jobs</h2>
+            <h2 class="text-4xl font-bold">
+                <a class="hover:underline" href="{{ route('jobs.index') }}">jobs</a>
+            </h2>
             @if (! isset($tag) && ! isset($employer))
                 <!-- auth () -->
                 /
-                <h3 class="text-3xl"><a href="{{ route('jobs.create') }}" class="text-blue-600 hover:underline">create</a></h3>
+                <h3 class="text-3xl"><a href="{{ route('jobs.create') }}" class="text-blue-600 hover:underline">Create</a></h3>
             @endif
 
             @isset($tag)
