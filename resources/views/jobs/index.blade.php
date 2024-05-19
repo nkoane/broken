@@ -2,14 +2,20 @@
     <div class="mb-4 flex items-center justify-between">
         <div class="flex items-center gap-2">
             <h2 class="text-4xl font-bold">jobs</h2>
+            @if (! isset($tag) && ! isset($employer))
+                <!-- auth () -->
+                /
+                <h3 class="text-3xl"><a href="{{ route('jobs.create') }}" class="text-blue-600 hover:underline">create</a></h3>
+            @endif
+
             @isset($tag)
                 /
-                <h2 class="text-3xl">{{ $tag->name }}</h2>
+                <h3 class="text-3xl">{{ $tag->name }}</h3>
             @endif
 
             @isset($employer)
                 /
-                <h2 class="text-3xl">{{ $employer->name }}</h2>
+                <h3 class="text-3xl">{{ $employer->name }}</h3>
             @endif
         </div>
         <div class="">
@@ -23,7 +29,7 @@
                 <li class="w-1/4 max-w-[33%] flex-grow bg-gray-50 p-4 py-2 even:bg-orange-100 hover:bg-slate-100">
                     <dl class="flex h-full w-full flex-col">
                         <dt class="mb-1 text-xl font-bold">
-                            <a class="text-blue-600 hover:underline" href="{{ route('jobs.job.show', $job->id) }}">
+                            <a class="text-blue-600 hover:underline" href="{{ route('jobs.show', $job->id) }}">
                                 {{ $job['title'] }}
                             </a>
                         </dt>

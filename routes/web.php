@@ -18,22 +18,22 @@ Route::get('/jobs', function () {
     return view('jobs.index', [
         'jobs' => $jobs
     ]);
-})->name('jobs');
+})->name('jobs.index');
+
+
+Route::get('/jobs/create', function () {
+    return view('jobs.create');
+})->name('jobs.create');
 
 Route::get('/jobs/{id}', function ($id) {
-
     $job = Job::find($id);
-
-    if ($job === null) {
-        abort(404, 'WTF, You is looking for ain\'t here.');
-    }
-
-    return view('jobs.view', ['job' => $job]);
-})->name('jobs.job.show');
+    return view('jobs.show', ['job' => $job]);
+})->name('jobs.show');
 
 Route::get('/jobs/tag/{tag}', function ($tag) {
     $tag = Tag::where('name', $tag)->first();
     if ($tag === null) {
+        dump('tag, not found', $tag);
         abort(404, 'We do not have that tag.');
     }
 
@@ -48,6 +48,7 @@ Route::get('/jobs/employer/{id}', function ($id) {
     $employer = Employer::find($id);
 
     if ($employer === null) {
+        dump('tag, not found', $employer);
         abort(404, 'We do not have that employer.');
     }
 
