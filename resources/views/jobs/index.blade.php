@@ -6,7 +6,7 @@
         </div>
     </div>
 
-    @if (! empty($jobs))
+    @if ($jobs->hasPages())
         <ol class="flex flex-wrap gap-2">
             @foreach ($jobs as $job)
                 <li class="w-1/4 max-w-[33%] flex-grow bg-gray-50 p-4 py-2 even:bg-orange-100 hover:bg-slate-100">
@@ -30,5 +30,7 @@
                 </li>
             @endforeach
         </ol>
+    @else
+        <div class="font-bold italic">Dololo.</div>
     @endif
 </x-layout>
