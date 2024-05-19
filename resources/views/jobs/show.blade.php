@@ -28,5 +28,17 @@
             <strong>ZAR</strong>
             {{ number_format($job->salary, 0, '.', ' ') }}
         </dd>
+        @if ($job->tags)
+            <dd class="italic">
+                @foreach ($job->tags as $tag)
+                    <a href="{{ route('jobs.tag', $tag->name) }}" class="mx-1 text-blue-400 hover:underline">
+                        {{ $tag->name }}
+                    </a>
+                    @if (! $loop->last)
+                        ,
+                    @endif
+                @endforeach
+            </dd>
+        @endif
     </dl>
 </x-layout>
