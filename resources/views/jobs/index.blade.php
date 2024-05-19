@@ -65,5 +65,4 @@
     @else
         <div class="font-bold italic">Dololo.</div>
     @endif
-    @dump($jobs->count())
 </x-layout>
