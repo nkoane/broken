@@ -3,7 +3,7 @@
     'action' => 'anchor',
 ])
 <form class="m-4 rounded" action="{{ $action }}" method="post">
-    <div class="flex gap-4">
+    <div class="gap-4 md:flex">
         <div class="w-full sm:col-span-3">
             <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Job Title</label>
             <div class="mt-2">
@@ -12,6 +12,7 @@
                     name="first-name"
                     id="first-name"
                     autocomplete="given-name"
+                    placeholder="Software Engineer"
                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
             </div>
         </div>
@@ -30,10 +31,10 @@
             </div>
         </div>
         <div class="w-full">
-            <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Salary</label>
+            <label for="salary" class="block text-sm font-medium leading-6 text-gray-900">Salary</label>
             <div class="mt-2">
                 <div
-                    class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                    class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
                     <span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm">ZAR</span>
                     <input
                         type="number"
@@ -47,12 +48,13 @@
         </div>
     </div>
     <div class="col-span-full">
-        <label for="about" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
+        <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
         <div class="mt-2">
             <textarea
-                id="about"
-                name="about"
-                rows="3"
+                id="description"
+                name="description"
+                rows="7"
+                placeholder="The description of the job"
                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
         </div>
     </div>

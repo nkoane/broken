@@ -21,7 +21,7 @@ Route::get('/jobs', function () {
 
 Route::get('/jobs/create', function () {
     return view('jobs.create',  [
-        'employers' => Employer::all()->sortByDesc('name')
+        'employers' => Employer::all()->sortBy('name')
     ]);
 })->name('jobs.create');
 
