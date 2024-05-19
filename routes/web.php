@@ -12,9 +12,7 @@ Route::get('/bio', function () {
 })->name('bio');
 
 Route::get('/jobs', function () {
-
     $jobs = Job::with(['employer', 'tags'])->simplePaginate(5);
-
     return view('jobs.index', [
         'jobs' => $jobs
     ]);
@@ -33,7 +31,6 @@ Route::get('/jobs/{id}', function ($id) {
 Route::get('/jobs/tag/{tag}', function ($tag) {
     $tag = Tag::where('name', $tag)->first();
     if ($tag === null) {
-        dump('tag, not found', $tag);
         abort(404, 'We do not have that tag.');
     }
 
@@ -48,7 +45,6 @@ Route::get('/jobs/employer/{id}', function ($id) {
     $employer = Employer::find($id);
 
     if ($employer === null) {
-        dump('tag, not found', $employer);
         abort(404, 'We do not have that employer.');
     }
 
