@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JobController;
 use App\Models\{Job, Tag, Employer};
 use Illuminate\Support\Facades\Route;
 
@@ -12,119 +13,19 @@ Route::get('/bio', function () {
 })->name('bio');
 
 /* ----- jobs: index --- */
+Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
+Route::get('/jobs/tag/{tag}', [JobController::class, 'index'])->name('jobs.tag');
+Route::get('/jobs/employer/{employer}', [JobController::class, 'index'])->name('jobs.employer');
 
-Route::get('/jobs', function () {
-    $jobs = Job::with(['employer', 'tags'])->latest()->simplePaginate(5);
-    return view('jobs.index', [
-        'jobs' => $jobs
-    ]);
-})->name('jobs.index');
+/* ----- jobs: create --- */
+Route::get('/jobs/create', [JobController::class, 'create'])->name('jobs.create');
+Route::post('/jobs', [JobController::class, 'store'])->name('jobs.store');
 
-/* ----- job: create  --- */
+/* ----- jobs: job --- */
+Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
 
-Route::get('/jobs/create', function () {
-    $job = new Job();
-    return view('jobs.create',  [
-        'employers' => Employer::all()->sortBy('name'),
-        'job' => $job
-    ]);
-})->name('jobs.create');
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->name('jobs.edit');
+Route::patch('/jobs/{job}', [JobController::class, 'update'])->name('jobs.update');
 
-/* ----- job: store --- */
-
-Route::post('/jobs', function () {
-
-    request()->validate([
-        'title' => ['required'],
-        'salary' => ['required', 'integer', 'min:0'],
-        'description' => ['required'],
-        'employer_id' => ['required', 'exists:employers,id'],
-    ]);
-
-    $job = Job::create([
-        'title' => request('title'),
-        'description' => request('description'),
-        'salary' => request('salary'),
-        'employer_id' => request('employer_id'),
-    ]);
-    return redirect(
-        route('jobs.show', $job->id)
-    );
-})->name('jobs.store');
-
-/* ----- job: show --- */
-
-Route::get('/jobs/{job}', function (Job $job) {
-
-    // ?  $job = Job::findOrFail($job->id) <-- i need to remember this
-
-    return view('jobs.show', ['job' => $job]);
-})->name('jobs.show');
-
-/* ----- job: edit --- */
-
-Route::get('/jobs/{job}/edit', function (Job $job) {
-    return view('jobs.edit', [
-        'job' => $job,
-        'employers' => Employer::all()->sortBy('name')
-    ]);
-})->name('jobs.edit');
-
-/* ----- job: update --- */
-
-Route::patch('/jobs/{job}', function (Job $job) {
-    request()->validate([
-        'title' => ['required'],
-        'salary' => ['required', 'integer', 'min:0'],
-        'description' => ['required'],
-        'employer_id' => ['required', 'exists:employers,id'],
-    ]);
-
-    $job->update([
-        'title' => request('title'),
-        'description' => request('description'),
-        'salary' => request('salary'),
-        'employer_id' => request('employer_id')
-    ]);
-    return redirect(route('jobs.show', $job->id));
-})->name('jobs.update');
-
-
-/* ----- job: delete --- */
-
-Route::get('/jobs/{job}/delete', function (Job $job) {
-    return view('jobs.delete', ['job' => $job]);
-})->name('jobs.delete');
-
-/* ----- job: destroy --- */
-
-Route::delete('/jobs/{job}', function (Job $job) {
-    request()->validate([
-        'id' => ['required', 'exists:job_listings,id'],
-    ]);
-
-    $job->delete();
-    return redirect(route('jobs.index'));
-})->name('jobs.destroy');
-
-/* ----- job: tag --- */
-
-Route::get('/jobs/tag/{tag:name}', function (Tag $tag) {
-    $jobs = $tag->jobs()->with(['employer', 'tags'])->simplePaginate(5);
-    return view('jobs.index', [
-        'jobs' => $jobs,
-        'tag' => $tag
-    ]);
-})->name('jobs.tag');
-
-/* ----- job: employer --- */
-
-Route::get('/jobs/employer/{employer}', function (Employer $employer) {
-
-    $jobs = $employer->jobs()->with(['tags'])->simplePaginate(5);
-
-    return view('jobs.index', [
-        'jobs' => $jobs,
-        'employer' => $employer
-    ]);
-})->name('jobs.employer');
+Route::get('/jobs/{job}/delete', [JobController::class, 'delete'])->name('jobs.delete');
+Route::delete('/jobs/{job}', [JobController::class, 'destroy'])->name('jobs.destroy');
