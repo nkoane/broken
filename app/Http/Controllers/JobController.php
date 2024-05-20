@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class JobController extends Controller
 {
 
-    public function index(Tag $tag = null, Employer $employer = null): \Illuminate\Contracts\View\View
+    public function index(Tag $tag = null, Employer $employer = null)
     {
         if ($tag !== null) {
             $jobs = $tag->jobs()->with(['employer', 'tags'])->latest()->simplePaginate(5);
