@@ -8,6 +8,6 @@
         action="{{ route('jobs.update', $job->id) }}"
         :job="$job"
         :employers="$employers"
-        :method="'PUT'"
+        :method="'PATCH'"
         :cancel="route('jobs.show', $job->id)" />
 </x-layout>
