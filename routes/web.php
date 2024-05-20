@@ -28,7 +28,7 @@ Route::get('/jobs/create', function () {
     ]);
 })->name('jobs.create');
 
-
+// jobs/store
 Route::post('/jobs', function () {
 
     request()->validate([
@@ -49,13 +49,13 @@ Route::post('/jobs', function () {
     );
 })->name('jobs.store');
 
+// jobs/show
 Route::get('/jobs/{id}', function ($id) {
     $job = Job::find($id);
     return view('jobs.show', ['job' => $job]);
 })->name('jobs.show');
 
-/* ----- job: edit -> update : delete -> destroy  --- */
-
+// jobs/edit
 Route::get('/jobs/{id}/edit', function ($id) {
     $job = Job::find($id);
     return view('jobs.edit', [
@@ -64,6 +64,7 @@ Route::get('/jobs/{id}/edit', function ($id) {
     ]);
 })->name('jobs.edit');
 
+// job/update
 Route::put('/jobs/{id}', function ($id) {
     request()->validate([
         'title' => ['required'],
@@ -82,7 +83,7 @@ Route::put('/jobs/{id}', function ($id) {
     return redirect(route('jobs.show', $id));
 })->name('jobs.update');
 
-
+// job/delete
 Route::get('/jobs/{id}/delete', function ($id) {
     $job = Job::find($id);
     return view('jobs.delete', ['job' => $job]);
@@ -101,7 +102,7 @@ Route::delete('/jobs/{id}', function ($id) {
 })->name('jobs.destroy');
 
 /* ---- just sperating these things so they are easier to find late ------ */
-
+// job/tags
 Route::get('/jobs/tag/{tag}', function ($tag) {
     $tag = Tag::where('name', $tag)->first();
     if ($tag === null) {
@@ -115,6 +116,7 @@ Route::get('/jobs/tag/{tag}', function ($tag) {
     ]);
 })->name('jobs.tag');
 
+// job/employer
 Route::get('/jobs/employer/{id}', function ($id) {
     $employer = Employer::find($id);
 
