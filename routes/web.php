@@ -11,6 +11,8 @@ Route::get('/bio', function () {
     return view('bio');
 })->name('bio');
 
+/* ----- jobs: index --- */
+
 Route::get('/jobs', function () {
     $jobs = Job::with(['employer', 'tags'])->latest()->simplePaginate(5);
     return view('jobs.index', [
@@ -18,7 +20,7 @@ Route::get('/jobs', function () {
     ]);
 })->name('jobs.index');
 
-/* ----- job: create + store --- */
+/* ----- job: create  --- */
 
 Route::get('/jobs/create', function () {
     $job = new Job();
@@ -28,7 +30,8 @@ Route::get('/jobs/create', function () {
     ]);
 })->name('jobs.create');
 
-// jobs/store
+/* ----- job: store --- */
+
 Route::post('/jobs', function () {
 
     request()->validate([
@@ -49,23 +52,24 @@ Route::post('/jobs', function () {
     );
 })->name('jobs.store');
 
-// jobs/show
-Route::get('/jobs/{id}', function ($id) {
-    $job = Job::find($id);
+/* ----- job: show --- */
+
+Route::get('/jobs/{job}', function (Job $job) {
     return view('jobs.show', ['job' => $job]);
 })->name('jobs.show');
 
-// jobs/edit
-Route::get('/jobs/{id}/edit', function ($id) {
-    $job = Job::find($id);
+/* ----- job: edit --- */
+
+Route::get('/jobs/{job}/edit', function (Job $job) {
     return view('jobs.edit', [
         'job' => $job,
         'employers' => Employer::all()->sortBy('name')
     ]);
 })->name('jobs.edit');
 
-// job/update
-Route::put('/jobs/{id}', function ($id) {
+/* ----- job: update --- */
+
+Route::patch('/jobs/{job}', function (Job $job) {
     request()->validate([
         'title' => ['required'],
         'salary' => ['required', 'integer', 'min:0'],
@@ -73,42 +77,36 @@ Route::put('/jobs/{id}', function ($id) {
         'employer_id' => ['required', 'exists:employers,id'],
     ]);
 
-    $job = Job::find($id);
     $job->update([
         'title' => request('title'),
         'description' => request('description'),
         'salary' => request('salary'),
         'employer_id' => request('employer_id')
     ]);
-    return redirect(route('jobs.show', $id));
+    return redirect(route('jobs.show', $job->id));
 })->name('jobs.update');
 
-// job/delete
-Route::get('/jobs/{id}/delete', function ($id) {
-    $job = Job::find($id);
+
+/* ----- job: delete --- */
+
+Route::get('/jobs/{job}/delete', function (Job $job) {
     return view('jobs.delete', ['job' => $job]);
 })->name('jobs.delete');
 
-Route::delete('/jobs/{id}', function ($id) {
+/* ----- job: destroy --- */
+
+Route::delete('/jobs/{job}', function (Job $job) {
     request()->validate([
         'id' => ['required', 'exists:job_listings,id'],
     ]);
-
-    $job = Job::find($id);
-
 
     $job->delete();
     return redirect(route('jobs.index'));
 })->name('jobs.destroy');
 
-/* ---- just sperating these things so they are easier to find late ------ */
-// job/tags
-Route::get('/jobs/tag/{tag}', function ($tag) {
-    $tag = Tag::where('name', $tag)->first();
-    if ($tag === null) {
-        abort(404, 'We do not have that tag.');
-    }
+/* ----- job: tag --- */
 
+Route::get('/jobs/tag/{tag:name}', function (Tag $tag) {
     $jobs = $tag->jobs()->with(['employer', 'tags'])->simplePaginate(5);
     return view('jobs.index', [
         'jobs' => $jobs,
@@ -116,13 +114,9 @@ Route::get('/jobs/tag/{tag}', function ($tag) {
     ]);
 })->name('jobs.tag');
 
-// job/employer
-Route::get('/jobs/employer/{id}', function ($id) {
-    $employer = Employer::find($id);
+/* ----- job: employer --- */
 
-    if ($employer === null) {
-        abort(404, 'We do not have that employer.');
-    }
+Route::get('/jobs/employer/{employer}', function (Employer $employer) {
 
     $jobs = $employer->jobs()->with(['tags'])->simplePaginate(5);
 
