@@ -26,9 +26,13 @@
     </div>
 
     @if ($jobs->count() > 0)
-        <ol class="flex flex-wrap gap-2">
+        <ol class="grid gap-2 md:grid-cols-3">
             @foreach ($jobs as $job)
-                <li class="w-1/4 max-w-[33%] flex-grow bg-gray-50 p-4 py-2 even:bg-orange-100 hover:bg-slate-100">
+                {{--
+                    <li class="w-1/3 rounded-md border-b-2 bg-gray-50 p-4 py-2 even:bg-orange-100 hover:bg-slate-100">
+                --}}
+
+                <li class="rounded-md border-b-2 bg-gray-50 p-4 py-2 even:bg-orange-100 hover:bg-slate-100">
                     <dl class="flex h-full w-full flex-col">
                         <dt class="mb-1 text-xl font-bold">
                             <a class="text-blue-600 hover:underline" href="{{ route('jobs.show', $job->id) }}">

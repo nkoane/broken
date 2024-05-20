@@ -1,8 +1,13 @@
 @props([
     "employers" => false,
-    "action" => "anchor",
+    "action" => false,
+    "job" => null,
+    "cancel" => route("jobs.index"),
+    "method" => "post",
 ])
+
 <form class="m-4 p-8" action="{{ $action }}" method="post">
+    @method($method)
     @csrf
     <div class="mb-4 border-b border-sky-200 pb-4">
         <h3 class="text-base font-semibold leading-7 text-gray-900">job, specification.</h3>
@@ -32,7 +37,7 @@
                     id="title"
                     autocomplete="given-name"
                     placeholder="Software Engineer"
-                    value="{{ old("title") }}"
+                    value="{{ old("title", $job->title) }}"
                     required
                     class="@if($errors->has('title')) border-red-600 @else border-0 @endif block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                 @error("title")
@@ -50,7 +55,9 @@
                     required
                     class="@if($errors->has('employer_id')) border-red-600 @else border-0 @endif block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     @foreach ($employers as $employer)
-                        <option value="{{ $employer->id }}" {{ old("employer_id") == $employer->id ? "selected" : "" }}>
+                        <option
+                            value="{{ $employer->id }}"
+                            {{ old("employer_id", $job->employer_id) == $employer->id ? "selected" : "" }}>
                             {{ $employer->name }}
                         </option>
                     @endforeach
@@ -79,7 +86,7 @@
                         id="salary"
                         autocomplete="salary"
                         required
-                        value="{{ old("salary") }}"
+                        value="{{ old("salary", $job->salary) }}"
                         class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                         placeholder="10 000 000" />
                 </div>
@@ -98,7 +105,7 @@
                 name="description"
                 rows="7"
                 placeholder="The description of the job">
-{{ old("description") }}</textarea
+{{ old("description", $job->description) }}</textarea
             >
             @error("description")
                 <span class="py-2 text-sm italic text-red-600">{{ $message }}</span>
@@ -108,12 +115,16 @@
 
     <div class="mr-2 mt-6 flex items-center justify-end gap-x-6">
         <button type="button" class="text-sm font-semibold leading-6 text-gray-900">
-            <a href="{{ route("jobs.index") }}">Cancel</a>
+            <a href="{{ $cancel }}">Cancel</a>
         </button>
         <button
             type="submit"
             class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-            Create
+            @if ($job)
+                Update
+            @else
+                Create
+            @endif
         </button>
     </div>
 </form>
