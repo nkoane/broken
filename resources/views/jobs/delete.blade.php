@@ -8,10 +8,6 @@
             /
             <h3 class="text-3xl"><a href="{{ route('jobs.create') }}" class="text-blue-600 hover:underline">{{ $job->title }}</a></h3>
         </div>
-        <div class="">
-            <a href="{{ route('jobs.edit', $job->id) }}" class="text-sky-600 hover:underline">edit,</a>
-            <a href="{{ route('jobs.delete', $job->id) }}" class="text-sky-600 hover:underline">delete</a>
-        </div>
     </div>
     <form action="{{ route('jobs.destroy', ['id' => $job->id]) }}" method="post">
         @csrf
@@ -35,11 +31,12 @@
                 <strong>ZAR</strong>
                 {{ number_format($job->salary, 0, '.', ' ') }}
             </dd>
-            <dd>
+            <dd class="flex items-center justify-end gap-4">
+                <x-nav.cancel :cancel="route('jobs.show', $job->id)">Cancel</x-nav.cancel>
                 <button
                     class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     type="submit">
-                    delete, it.
+                    Delete
                 </button>
             </dd>
         </dl>

@@ -11,8 +11,8 @@
             </h3>
         </div>
         <div class="">
-            <a href="{{ route('jobs.edit', $job->id) }}" class="text-sky-600 hover:underline">edit,</a>
-            <a href="{{ route('jobs.delete', $job->id) }}" class="text-sky-600 hover:underline">delete</a>
+            <x-nav.button href="{{ route('jobs.edit', $job->id) }}">edit</x-nav.button>
+            <x-nav.button href="{{ route('jobs.delete', $job->id) }}">delete</x-nav.button>
         </div>
     </div>
 
