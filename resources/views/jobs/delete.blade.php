@@ -9,7 +9,7 @@
             <h3 class="text-3xl"><a href="{{ route('jobs.create') }}" class="text-blue-600 hover:underline">{{ $job->title }}</a></h3>
         </div>
     </div>
-    <form action="{{ route('jobs.destroy', ['id' => $job->id]) }}" method="post">
+    <form action="{{ route('jobs.destroy', $job->id) }}" method="post">
         @csrf
         @method('DELETE')
         @if ($errors->any())
