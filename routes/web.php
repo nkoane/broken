@@ -55,6 +55,9 @@ Route::post('/jobs', function () {
 /* ----- job: show --- */
 
 Route::get('/jobs/{job}', function (Job $job) {
+
+    // ?  $job = Job::findOrFail($job->id) <-- i need to remember this
+
     return view('jobs.show', ['job' => $job]);
 })->name('jobs.show');
 
