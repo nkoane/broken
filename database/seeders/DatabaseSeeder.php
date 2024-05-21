@@ -2,13 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Employer;
-use App\Models\Job;
-use App\Models\Tag;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Nette\Utils\Random;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,7 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             EmployerSeeder::class,
             JobSeeder::class,
-            TagSeeder::class
+            TagSeeder::class,
         ]);
     }
 }

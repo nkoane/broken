@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'root')->name('root');
 Route::view('/bio', 'bio')->name('bio');
 
-
 Route::resource('jobs', JobController::class);
 
 Route::controller(JobController::class)->group(function () {

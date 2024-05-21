@@ -4,10 +4,6 @@
         <span>/</span>
         <h2 class="text-3xl">Edit</h2>
     </div>
-    <x-forms.job
-        action="{{ route('jobs.update', $job->id) }}"
-        :job="$job"
-        :employers="$employers"
-        :method="'PATCH'"
+    <x-forms.job action="{{ route('jobs.update', $job->id) }}" :job="$job" :employers="$employers" :method="'PATCH'"
         :cancel="route('jobs.show', $job->id)" />
 </x-layout>

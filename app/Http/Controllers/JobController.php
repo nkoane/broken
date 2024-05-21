@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
-
-    public function index(Tag $tag = null, Employer $employer = null)
+    public function index(?Tag $tag = null, ?Employer $employer = null)
     {
         if ($tag !== null) {
             $jobs = $tag->jobs()->with(['employer', 'tags'])->latest()->simplePaginate(5);
@@ -20,15 +19,12 @@ class JobController extends Controller
             $jobs = Job::with(['employer', 'tags'])->latest()->simplePaginate(5);
         }
 
-        return view('jobs.index', [
-            'jobs' => $jobs,
-            'tag' => $tag,
-            'employer' => $employer
-        ]);
+        return view('jobs.index', ['jobs' => $jobs, 'tag' => $tag, 'employer' => $employer]);
     }
 
     public function create()
     {
+
         // ! authorise?
         return view('jobs.create', [
             'job' => new Job(),
@@ -53,6 +49,7 @@ class JobController extends Controller
             'salary' => $request->get('salary'),
             'employer_id' => $request->get('employer_id'),
         ]);
+
         return redirect(
             route('jobs.show', $job->id)
         );
@@ -61,7 +58,7 @@ class JobController extends Controller
     public function show(Job $job)
     {
         return view('jobs.show', [
-            'job' => $job
+            'job' => $job,
         ]);
     }
 
@@ -73,7 +70,6 @@ class JobController extends Controller
             'employers' => Employer::all()->sortBy('name'),
         ]);
     }
-
 
     public function update(Job $job, Request $request)
     {
@@ -90,8 +86,9 @@ class JobController extends Controller
             'title' => $request->get('title'),
             'description' => $request->get('description'),
             'salary' => $request->get('salary'),
-            'employer_id' => $request->get('employer_id')
+            'employer_id' => $request->get('employer_id'),
         ]);
+
         return redirect(route('jobs.show', $job->id));
     }
 

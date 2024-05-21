@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'I love programming' => 'Me encanta programar.'
+    'I love programming' => 'Me encanta programar.',
 ];

@@ -10,7 +10,8 @@ class Employer extends Model
 {
     use HasFactory;
 
-    public function jobs (): HasMany {
+    public function jobs(): HasMany
+    {
         return $this->hasMany(Job::class);
     }
 }

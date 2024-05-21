@@ -34,7 +34,7 @@
                     <a href="{{ route('jobs.tag', $tag->name) }}" class="mx-1 text-blue-400 hover:underline">
                         {{ $tag->name }}
                     </a>
-                    @if (! $loop->last)
+                    @if (!$loop->last)
                         ,
                     @endif
                 @endforeach
