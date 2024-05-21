@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Employer;
 use App\Models\Job;
 use App\Models\Tag;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
-    public function index(?Tag $tag = null, ?Employer $employer = null)
+    public function index(?Tag $tag = null, ?Employer $employer = null): View
     {
         if ($tag !== null) {
             $jobs = $tag->jobs()->with(['employer', 'tags'])->latest()->simplePaginate(5);
@@ -22,7 +24,7 @@ class JobController extends Controller
         return view('jobs.index', ['jobs' => $jobs, 'tag' => $tag, 'employer' => $employer]);
     }
 
-    public function create()
+    public function create(): View
     {
 
         // ! authorise?
@@ -32,7 +34,7 @@ class JobController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         // ! authorise?
 
@@ -55,14 +57,15 @@ class JobController extends Controller
         );
     }
 
-    public function show(Job $job)
+    // * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+    public function show(Job $job): View
     {
         return view('jobs.show', [
             'job' => $job,
         ]);
     }
 
-    public function edit(Job $job)
+    public function edit(Job $job): View
     {
         // ! authorise?
         return view('jobs.edit', [
@@ -71,7 +74,7 @@ class JobController extends Controller
         ]);
     }
 
-    public function update(Job $job, Request $request)
+    public function update(Job $job, Request $request): RedirectResponse
     {
 
         // ! authorise?
@@ -92,13 +95,13 @@ class JobController extends Controller
         return redirect(route('jobs.show', $job->id));
     }
 
-    public function delete(Job $job)
+    public function delete(Job $job): View
     {
         // ! authorise?
         return view('jobs.delete', ['job' => $job]);
     }
 
-    public function destroy(Job $job, Request $request)
+    public function destroy(Job $job, Request $request): RedirectResponse
     {
         // ! authorise?
 
