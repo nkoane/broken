@@ -29,22 +29,16 @@
 
     <div class="gap-4 md:flex">
         <div class="w-full sm:col-span-3">
-            <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Job Title</label>
-            <div class="mt-2">
-                <input
-                    type="text"
-                    name="title"
-                    id="title"
-                    autocomplete="given-name"
-                    placeholder="Software Engineer"
-                    value="{{ old("title", $job->title) }}"
-                    required
-                    class="@if($errors->has('title')) border-red-600 @else border-0 @endif block w-full rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-                @error("title")
-                    <span class="py-2 text-sm italic text-red-600">{{ $message }}</span>
-                @enderror
-            </div>
+            <x-forms.elements.label for="title">Job Title</x-forms.elements.label>
+            <x-forms.elements.input
+                value="{{old('title', $job->title)}}"
+                required
+                type="text"
+                name="title"
+                id="title"
+                placeholder="Software Engineer" />
         </div>
+
         <div class="w-full">
             <label for="employer" class="block text-sm font-medium leading-6 text-gray-900">Employer</label>
             <div class="mt-2">
