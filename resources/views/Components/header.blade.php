@@ -22,17 +22,15 @@
         </li>
         <li>
             <a href="/for-your-eyes-only">
-                <img
-                    class="block h-[40px] w-[40px] hover:cursor-pointer"
-                    src="https://source.boringavatars.com/bauhaus/40/broken-hearts-but-not-ideas"
-                    alt="tommy spinelli" />
+                <img class="block h-[40px] w-[40px] hover:cursor-pointer" src="https://source.boringavatars.com/bauhaus/40/broken-hearts-but-not-ideas" alt="tommy spinelli" />
             </a>
         </li>
         <li class="ml-2 border-l-2 border-black px-2">
             @if (auth()->check())
-                <x-nav.link action="/" method="post" type="button" class="text-blue-600">sign out</x-nav.link>
+            <x-nav.link action="/sign-out" method="post" type="button" class="text-blue-600">sign out</x-nav.link>
             @else
-                <x-nav.link action="/" method="post" class="text-blue-600">sign in</x-nav.link>
+            <x-nav.link href="/sign-in" class="text-blue-600">sign in</x-nav.link>
+            <x-nav.link href="/sign-up" class="text-blue-600">sign up</x-nav.link>
             @endif
         </li>
     </ul>
@@ -44,4 +42,5 @@
         transition: all 0.75s;
         color: red;
     }
+
 </style>
