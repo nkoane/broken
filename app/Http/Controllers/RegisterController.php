@@ -12,7 +12,7 @@ class RegisterController extends Controller
 {
     public function create(): View
     {
-        return view('register.create');
+        return view('auth.register');
     }
 
     public function store(Request $request): RedirectResponse

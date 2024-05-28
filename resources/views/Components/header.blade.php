@@ -17,22 +17,30 @@
     </nav>
 
     <ul class="flex items-center bg-white p-2 text-sm">
-        <li class="mr-2 border-l-2 border-r-2 border-black border-l-black px-2">
-            <x-nav.link href="/dash">dashboard</x-nav.link>
-        </li>
-        <li>
-            <a href="/for-your-eyes-only">
-                <img class="block h-[40px] w-[40px] hover:cursor-pointer" src="https://source.boringavatars.com/bauhaus/40/broken-hearts-but-not-ideas" alt="tommy spinelli" />
-            </a>
-        </li>
-        <li class="ml-2 border-l-2 border-black px-2">
-            @if (auth()->check())
-            <x-nav.link action="/sign-out" method="post" type="button" class="text-blue-600">sign out</x-nav.link>
-            @else
-            <x-nav.link href="/sign-in" class="text-blue-600">sign in</x-nav.link>
-            <x-nav.link href="/sign-up" class="text-blue-600">sign up</x-nav.link>
-            @endif
-        </li>
+        @auth
+            <li class="mr-2 border-black border-l-black px-2">
+                <x-nav.link href="/dash">dashboard</x-nav.link>
+            </li>
+            <li>
+                <a href="/for-your-eyes-only">
+                    <img
+                        class="block h-[40px] w-[40px] hover:cursor-pointer"
+                        src="https://source.boringavatars.com/bauhaus/40/broken-hearts-but-not-ideas"
+                        alt="tommy spinelli"
+                    />
+                </a>
+            </li>
+            <li class="ml-2 border-l-2 border-black px-2">
+                <x-nav.link action="/sign-out" method="post" type="button" class="text-blue-600">sign out</x-nav.link>
+            </li>
+        @endauth
+
+        @guest
+            <li class="ml-2 border-l-2 border-black px-2">
+                <x-nav.link href="/sign-in" :active="request()->routeIs('auth.login')">sign in</x-nav.link>
+                <x-nav.link href="/sign-up" :active="request()->routeIs('register.create')">sign up</x-nav.link>
+            </li>
+        @endguest
     </ul>
 </header>
 
@@ -42,5 +50,4 @@
         transition: all 0.75s;
         color: red;
     }
-
 </style>
