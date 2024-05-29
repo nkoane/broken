@@ -19,7 +19,7 @@
     <ul class="flex items-center bg-white p-2 text-sm">
         @auth
             <li class="mr-2 border-black border-l-black px-2">
-                <x-nav.link href="/dash">dashboard</x-nav.link>
+                <x-nav.link href="/dash">dash</x-nav.link>
             </li>
             <li>
                 <a href="/for-your-eyes-only">

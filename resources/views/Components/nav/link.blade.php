@@ -5,6 +5,7 @@
 
 @if ($type == 'button')
     <form {{ $attributes }}>
+        @csrf
         <button type="submit">{{ $slot }}</button>
     </form>
 @elseif ($type == 'anchor')

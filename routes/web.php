@@ -7,7 +7,7 @@ use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'root')->name('root');
-Route::view('/bio', 'bio')->name('bio');
+Route::view('/dash', 'dash')->name('dash');
 
 Route::resource('jobs', JobController::class);
 
