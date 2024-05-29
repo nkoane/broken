@@ -4,6 +4,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\RecoveryController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
+use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'root')->name('root');
@@ -20,29 +21,33 @@ Route::controller(JobController::class)->group(function () {
     Route::get('/jobs', 'index')->name('jobs.index');
     Route::get('/jobs/tag/{tag}', 'index')->name('jobs.tag');
     Route::get('/jobs/employer/{employer}', 'index')->name('jobs.employer');
-    Route::get('/jobs/{job}', 'show')->name('jobs.show');
 
     // Create
     Route::get('/jobs/create', 'create')->name('jobs.create')
-        ->middleware('auth')
-        ->can('job.create');
+        ->middleware('auth')->can('create', Job::class);
+
     Route::post('/jobs', 'store')->name('jobs.store')
         ->middleware('auth')
-        ->can('job.create');
+        ->can('create', Job::class);
+
+    Route::get('/jobs/{job}', 'show')->name('jobs.show');
 
     // Update
-    Route::get('/jobs/{job}/edit', 'edit')->name('jobs.edit')->middleware('auth', 'can:job.edit,job'); // i am only keeping it here for reference
+    Route::get('/jobs/{job}/edit', 'edit')->name('jobs.edit')
+        ->middleware('auth')
+        ->can('update', 'job');
+
     Route::patch('/jobs/{job}', 'update')->name('jobs.update')
-        ->middleware('aut')
-        ->can('job.edit', 'job');
+        ->middleware('auth')
+        ->can('update', 'job');
 
     // Delete
     Route::get('/jobs/{job}/delete', 'delete')->name('jobs.delete')
         ->middleware('auth')
-        ->can('job.delete', 'job');
+        ->can('delete', 'job');
     Route::delete('/jobs/{job}', 'destroy')->name('jobs.destroy')
         ->middleware('auth')
-        ->can('job.delete', 'job');
+        ->can('delete', 'job');
 });
 
 /* sign up */

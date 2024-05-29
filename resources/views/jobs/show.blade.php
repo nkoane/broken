@@ -10,10 +10,12 @@
                 <a href="{{ route('jobs.show', $job->id) }}" class="text-blue-600 hover:underline">{{ $job->title }}</a>
             </h3>
         </div>
-        @can('job.edit', $job)
+        @can('update', $job)
             <div class="">
                 <x-nav.button href="{{ route('jobs.edit', $job->id) }}">edit</x-nav.button>
-                <x-nav.button href="{{ route('jobs.delete', $job->id) }}">delete</x-nav.button>
+                @can('delete', $job)
+                    <x-nav.button href="{{ route('jobs.delete', $job->id) }}">delete</x-nav.button>
+                @endcan
             </div>
         @endcan
     </div>

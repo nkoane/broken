@@ -29,7 +29,6 @@ class JobController extends Controller
 
     public function create(): View
     {
-
         return view('jobs.create', [
             'job' => new Job(),
             'employers' => Employer::where('user_id', Auth::id())->orderBy('name')->get(),

@@ -34,8 +34,11 @@ class AppServiceProvider extends ServiceProvider
             return Limit::perMinute(60);
         });
 
-        Gate::define('job.edit', function (User $user, Job $job) {
-            return $job->employer->user->is($user);
-        });
+        /*
+         Gate::define('job.edit', function (User $user, Job $job) {
+                return $job->employer->user->is($user);
+            });
+
+        */
     }
 }
