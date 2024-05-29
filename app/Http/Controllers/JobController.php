@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rule;
 
 class JobController extends Controller
 {
@@ -29,22 +30,23 @@ class JobController extends Controller
     public function create(): View
     {
 
-        // ! authorise?
         return view('jobs.create', [
             'job' => new Job(),
-            'employers' => Employer::all()->sortBy('name'),
+            'employers' => Employer::where('user_id', Auth::id())->orderBy('name')->get(),
         ]);
     }
 
     public function store(Request $request): RedirectResponse
     {
-        // ! authorise?
-
         $request->validate([
             'title' => ['required'],
             'salary' => ['required', 'integer', 'min:0'],
             'description' => ['required'],
-            'employer_id' => ['required', 'exists:employers,id'],
+            'employer_id' => [
+                'required',
+                'exists:employers,id',
+                Rule::in(Employer::where('user_id', Auth::id())->pluck('id')), /* * this is very important */
+            ],
         ]);
 
         $job = Job::create([
@@ -72,28 +74,30 @@ class JobController extends Controller
         /*
         if (Auth::guest()) {
             app('redirect')->setIntendedUrl(route('jobs.edit', $job));
-            return redirect(route('auth.login'));
+            return redirect(route('login'));
         }
         */
 
-        Gate::authorize('job.edit', $job);
+        // Gate::authorize('job.edit', $job);
 
         return view('jobs.edit', [
             'job' => $job,
-            'employers' => Employer::all()->sortBy('name'),
+            'employers' => Employer::where('user_id', Auth::id())->orderBy('name')->get(),
         ]);
     }
 
     public function update(Job $job, Request $request): RedirectResponse
     {
 
-        Gate::authorize('job.edit', $job);
-        // ! authorise?
         $request->validate([
             'title' => ['required'],
             'salary' => ['required', 'integer', 'min:0'],
             'description' => ['required'],
-            'employer_id' => ['required', 'exists:employers,id'],
+            'employer_id' => [
+                'required',
+                'exists:employers,id',
+                Rule::in(Employer::where('user_id', Auth::id())->pluck('id')), /* * this is very important */
+            ],
         ]);
 
         $job->update([
@@ -108,8 +112,6 @@ class JobController extends Controller
 
     public function delete(Job $job): View
     {
-        Gate::authorize('job.edit', $job);
-
         // ! authorise?
         return view('jobs.delete', ['job' => $job]);
     }
@@ -118,7 +120,6 @@ class JobController extends Controller
     {
         // ! authorise?
 
-        Gate::authorize('job.edit', $job);
         $request->validate([
             'id' => ['required', 'exists:job_listings,id'],
         ]);

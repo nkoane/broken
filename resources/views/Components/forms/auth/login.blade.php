@@ -36,7 +36,7 @@
                     </p>
                     <p>
                         Forgot your password,
-                        <x-nav.link href="{{ route('auth.recover') }}">reset it.</x-nav.link>
+                        <x-nav.link href="{{ route('recover') }}">reset it.</x-nav.link>
                     </p>
                 </div>
                 <div class="flex gap-4 text-xs">

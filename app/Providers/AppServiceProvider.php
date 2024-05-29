@@ -27,7 +27,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
-        Model::preventLazyLoading(true);
+        Model::preventLazyLoading(! $this->app->isProduction());
+        Model::preventSilentlyDiscardingAttributes(! $this->app->isProduction());
 
         RateLimiter::for('login', function (Request $request) {
             return Limit::perMinute(60);

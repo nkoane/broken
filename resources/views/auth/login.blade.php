@@ -4,5 +4,5 @@
         <span>/</span>
         <h2 class="text-3xl">In</h2>
     </div>
-    <x-forms.auth.login action="{{ route('auth.login') }}" />
+    <x-forms.auth.login action="{{ route('login') }}" />
 </x-layout>

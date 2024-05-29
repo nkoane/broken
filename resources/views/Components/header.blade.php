@@ -44,7 +44,7 @@
 
         @guest
             <li class="ml-2 border-l-2 border-black px-2">
-                <x-nav.link href="/sign-in" :active="request()->routeIs('auth.login')">sign in</x-nav.link>
+                <x-nav.link href="/sign-in" :active="request()->routeIs('login')">sign in</x-nav.link>
                 <x-nav.link href="/sign-up" :active="request()->routeIs('register.create')">sign up</x-nav.link>
             </li>
         @endguest
