@@ -31,7 +31,14 @@
                 </a>
             </li>
             <li class="ml-2 border-l-2 border-black px-2">
-                <x-nav.link action="/sign-out" method="post" type="button" class="text-blue-600">sign out</x-nav.link>
+                <x-nav.link
+                    action="/sign-out"
+                    method="post"
+                    type="button"
+                    class="rounded border bg-gray-100 px-2 py-1 text-blue-600 hover:bg-black hover:text-white active:outline"
+                >
+                    sign out
+                </x-nav.link>
             </li>
         @endauth
 

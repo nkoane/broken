@@ -14,11 +14,19 @@
         <div class="flex-grow">
             <div class="mb-4">
                 <x-forms.elements.label for="email">Your email address</x-forms.elements.label>
-                <x-forms.elements.input value="{{old('email' )}}" required type="email" name="email" id="email" autocomplete="email" />
+                <x-forms.elements.input
+                    value="{{old('email' )}}"
+                    required
+                    type="email"
+                    name="email"
+                    id="email"
+                    :value="old('email')"
+                    autocomplete="email"
+                />
             </div>
             <div class="mb-4">
                 <x-forms.elements.label for="password">Your password</x-forms.elements.label>
-                <x-forms.elements.input required type="password" name="password" id="password" autocomplete="new-password" />
+                <x-forms.elements.input required type="password" name="password" id="password" autocomplete="password" />
             </div>
             <div class="mt-12 flex items-center justify-between gap-2">
                 <div class="text-xs">
