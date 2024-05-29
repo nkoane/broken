@@ -33,6 +33,8 @@ class SessionController extends Controller
             ]);
         }
 
+        /* https://laravel.com/docs/11.x/authentication#authenticating-users */
+
         $request->session()->regenerate();
 
         return redirect()->intended('dash');

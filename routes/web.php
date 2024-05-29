@@ -22,8 +22,10 @@ Route::get('/sign-up', [RegisterController::class, 'create'])->name('register.cr
 Route::post('/sign-up', [RegisterController::class, 'store'])->name('register.store');
 
 /* sign in */
-Route::get('/sign-in', [SessionController::class, 'create'])->name('auth.login');
-Route::post('/sign-in', [SessionController::class, 'store'])->name('auth.verify');
+Route::middleware('throttle:login')->group(function () {
+    Route::get('/sign-in', [SessionController::class, 'create'])->name('auth.login');
+    Route::post('/sign-in', [SessionController::class, 'store'])->name('auth.verify');
+});
 Route::post('/sign-out', [SessionController::class, 'destroy'])->name('auth.logout');
 
 /* password recovery*/
