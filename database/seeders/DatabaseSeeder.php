@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'first_name' => 'Tommy', 'last_name' => 'Gun',
             'email' => 'ltdn@arch.localhost',
+            'password' => 'labobeli',
         ]);
 
         $this->call([

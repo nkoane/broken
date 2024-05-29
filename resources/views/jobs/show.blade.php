@@ -10,10 +10,12 @@
                 <a href="{{ route('jobs.show', $job->id) }}" class="text-blue-600 hover:underline">{{ $job->title }}</a>
             </h3>
         </div>
-        <div class="">
-            <x-nav.button href="{{ route('jobs.edit', $job->id) }}">edit</x-nav.button>
-            <x-nav.button href="{{ route('jobs.delete', $job->id) }}">delete</x-nav.button>
-        </div>
+        @can('job.edit', $job)
+            <div class="">
+                <x-nav.button href="{{ route('jobs.edit', $job->id) }}">edit</x-nav.button>
+                <x-nav.button href="{{ route('jobs.delete', $job->id) }}">delete</x-nav.button>
+            </div>
+        @endcan
     </div>
 
     <dl class="w-full">
@@ -34,7 +36,7 @@
                     <a href="{{ route('jobs.tag', $tag->name) }}" class="mx-1 text-blue-400 hover:underline">
                         {{ $tag->name }}
                     </a>
-                    @if (!$loop->last)
+                    @if (! $loop->last)
                         ,
                     @endif
                 @endforeach

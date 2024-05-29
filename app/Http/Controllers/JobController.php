@@ -8,6 +8,8 @@ use App\Models\Tag;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class JobController extends Controller
 {
@@ -65,9 +67,17 @@ class JobController extends Controller
         ]);
     }
 
-    public function edit(Job $job): View
+    public function edit(Job $job): View|RedirectResponse
     {
-        // ! authorise?
+        /*
+        if (Auth::guest()) {
+            app('redirect')->setIntendedUrl(route('jobs.edit', $job));
+            return redirect(route('auth.login'));
+        }
+        */
+
+        Gate::authorize('job.edit', $job);
+
         return view('jobs.edit', [
             'job' => $job,
             'employers' => Employer::all()->sortBy('name'),
@@ -77,6 +87,7 @@ class JobController extends Controller
     public function update(Job $job, Request $request): RedirectResponse
     {
 
+        Gate::authorize('job.edit', $job);
         // ! authorise?
         $request->validate([
             'title' => ['required'],
@@ -97,6 +108,8 @@ class JobController extends Controller
 
     public function delete(Job $job): View
     {
+        Gate::authorize('job.edit', $job);
+
         // ! authorise?
         return view('jobs.delete', ['job' => $job]);
     }
@@ -105,6 +118,7 @@ class JobController extends Controller
     {
         // ! authorise?
 
+        Gate::authorize('job.edit', $job);
         $request->validate([
             'id' => ['required', 'exists:job_listings,id'],
         ]);

@@ -26,10 +26,9 @@ Route::middleware('throttle:login')->group(function () {
     Route::get('/sign-in', [SessionController::class, 'create'])->name('auth.login');
     Route::post('/sign-in', [SessionController::class, 'store'])->name('auth.verify');
 });
+
 Route::post('/sign-out', [SessionController::class, 'destroy'])->name('auth.logout');
 
 /* password recovery*/
 Route::get('/recover', [RecoveryController::class, 'create'])->name('auth.recover');
 Route::post('/recover', [RecoveryController::class, 'store'])->name('auth.reset');
-
-/* sign out */
