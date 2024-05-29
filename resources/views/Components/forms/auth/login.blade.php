@@ -7,8 +7,8 @@
     @method($method)
     @csrf
     <div class="mb-4 border-b border-sky-200 pb-4">
-        <h3 class="text-base font-semibold leading-7 text-gray-900">Registration, sign on up.</h3>
-        <p class="mt-1 text-sm leading-6 text-gray-600">we, just need your life.</p>
+        <h3 class="text-base font-semibold leading-7 text-gray-900">Come on in, player.</h3>
+        <p class="mt-1 text-sm leading-6 text-gray-600">We just need a bit o' proof you is who you is, yeah?</p>
     </div>
     <div class="flex justify-between gap-4">
         <div class="flex-grow">
