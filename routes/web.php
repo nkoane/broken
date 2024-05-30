@@ -4,8 +4,20 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\RecoveryController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
+use App\Mail\JobPosted;
 use App\Models\Job;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+
+
+// Route::get('mail-test', function () {
+//  //   return new JobPosted();
+//     Mail::to('ltdn@arch.localhost')->send(
+//         new JobPosted()
+//     );
+//
+//     return date('r');
+// });
 
 Route::view('/', 'root')->name('root');
 Route::view('/dash', 'dash')->name('dash');
