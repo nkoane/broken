@@ -4,7 +4,7 @@ export default {
     theme: {
         extend: {
             colors: {
-                'broken': "rgb(200,200,20)"
+                'broken': "rgb(240,150,20)"
             }
 
         },
