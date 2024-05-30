@@ -2,7 +2,7 @@
     <div class="flex items-center">
         <h1 class="">
             <a href="/" class="group flex items-center font-bold">
-                <span>BROK</span>
+                <span class="text-broken">BROK</span>
                 <span>+</span>
                 <span>N</span>
             </a>
